@@ -19,10 +19,19 @@ format: revealjs
 
 ## Checklist when you start RStudio
 
--   Load the project we created last session and open the R script file.
--   Make sure that `Environment` panel is empty (click on broom icon to clean it up)
+1.  Go to the folder where you put your project for this workshop
+
+2.  Find a file with `.Rproj` extension - this is the R project file that holds all the information about your project.
+
+![](images/locate-rproj-file.jpg)
+
+3.  Double click on the file. Rstudio should launch with your project loaded!
+
+
+Optional (Though best practice):
+
+-   Make sure that `Environment` panel is empty (click on broom icon to clean it up).
 -   Clear the `Console` and `Plots` too.
--   Re-run the `library(tidyverse)` and `read_csv` portion in the previous session
 
 ## Refresher: Loading from CSV into a dataframe
 
@@ -179,7 +188,7 @@ cat("Most frequently occuring age:", mode_age, "\n") # this is here just for dem
 
 How we can interpret / report this:
 
-*"The age distribution of this sample is fairly symmetrical, as indicated by the very close mean (48 years) and median (48 years) values. The mode of 54 years suggests a slight right-skew in the age distribution, with a cluster of participants in their mid-50s."*
+*"The average age of respondents in this sample is 41.05 years (mean), with a median of 39 years. The mean being slightly higher than the median suggests a mild right skew in the age distribution, i.e. there are some older respondents pulling the average upward. The most frequently occurring age is 55 years, indicating a notable cluster of participants in their mid-50s."*
 
 ## Measures of Variability or Dispersion
 
@@ -196,6 +205,7 @@ cat("Variance of age:", var_age, "\n")
 cat("Standard deviation of age:", sd_age, "\n")
 cat("Range of age:", range_age[1], "to", range_age[2], "\n")
 cat("Interquartile range of age:", iqr_age, "\n")
+cat("between: ", quantile(wvs_cleaned$age, probs = c(0.25, 0.75)))
 
 ```
 
@@ -203,7 +213,7 @@ cat("Interquartile range of age:", iqr_age, "\n")
 
 How we can interpret / report this:
 
-*"The age distribution of this sample is fairly wide spread. With a standard deviation of 16.72144, suggesting that most individuals' ages deviate from the mean by approximately 16.72 years. The range of ages spans from 18 to 93 years, which covers a wide range of age groups within the sample. The interquartile range (IQR) of 28 years, which represents the middle 50% of the data, indicates a moderately wide distribution of ages in the central portion of the dataset."*
+*"The age distribution of this sample is fairly wide spread. With a standard deviation of 14.31988, suggesting that most individuals' ages deviate from the mean by approximately 14.32 years. The range of ages spans from 18 to 95 years, which covers a wide range of age groups within the sample. The IQR, which represents the middle 50% of respondents, fall within a 23-year band (roughly ages 29 to 52)"*
 
 ## Distribution Shape
 
@@ -229,7 +239,7 @@ cat("Kurtosis of age:", kurtosis_age, "\n")
 
 How we can interpret / report this:
 
-*"The age distribution has a very slight right skew (skewness = 0.10), meaning there are slightly more outliers toward older ages, but the skew is minimal since values between -0.5 and 0.5 are considered approximately symmetric. The kurtosis of 2.02 is lower than a normal distribution's kurtosis of 3, indicating this distribution is platykurtic - it has lighter tails and is more uniform or "flatter" than a normal distribution."*
+*"The age distribution shows a mild positive skew (skewness = 0.43), indicating a slight lean toward younger ages with some older respondents pulling the mean (41.05 years) above the median (39 years). The skew is modest enough to be considered approximately symmetric. The kurtosis of 2.49 is slightly below the normal distribution benchmark of 3, indicating a platykurtic distribution, i.e. ages are somewhat more evenly spread rather than sharply peaked around the mean."*
 
 ## Visualizing with ggplot - Histogram
 
@@ -473,7 +483,7 @@ The code is similar to previous bar charts; we just have to change the `position
 
 wvs_cleaned |> ggplot(aes(x = country, fill = age_group)) +
   geom_bar(position = "fill") + 
-  labs(y = "Proportion", title = "Age Groups by Country") +
+  labs(y = "Proportion", title = "Age Groups by Country (in percentage)") +
   theme_minimal()
 
 ```
@@ -486,12 +496,12 @@ wvs_cleaned |> ggplot(aes(x = country, fill = age_group)) +
 
 -   Identify potential outliers
 
-Let's first examine the correlation between `financial_satisfaction` and `life_satisfaction`
+Let's first examine the correlation between `emancipative_values` and `secular_values`
 
 ```{r}
 #| echo: true
 
-cor(wvs_cleaned$financial_satisfaction, wvs_cleaned$life_satisfaction)
+cor(wvs_cleaned$emancipative_values, wvs_cleaned$secular_values)
 
 ```
 ## Both continuous - Jitter / scatterplot
@@ -502,10 +512,10 @@ Let's visualize the two variables together with a jitter / scatterplot!
 #| echo: true
 #| output-location: slide
 
-wvs_cleaned |> ggplot(aes(x = financial_satisfaction, y = life_satisfaction)) +
+wvs_cleaned |> ggplot(aes(x = emancipative_values, y = secular_values)) +
   geom_jitter(alpha = 0.3) +
   geom_smooth(method = "lm") + # layer with geom_smooth
-  labs(title = "Financial vs Life Satisfaction") +
+  labs(title = "Emancipative vs Secular Values") +
   theme_minimal()
 
 ```
@@ -519,7 +529,7 @@ wvs_cleaned |> ggplot(aes(x = financial_satisfaction, y = life_satisfaction)) +
 
 -   Examine spread within groups
 
-Let's do a recap from last week and get the summary stats for `life_satisfaction` for each `country`
+Let's do a recap from last week and get the summary stats for `secular_values` for each `country`
 
 ```{r}
 #| echo: true
@@ -527,9 +537,9 @@ Let's do a recap from last week and get the summary stats for `life_satisfaction
 wvs_cleaned |> 
   group_by(country) |> 
   summarise(
-    mean_satisfaction = mean(life_satisfaction, na.rm = TRUE),
-    median_satisfaction = median(life_satisfaction, na.rm = TRUE),
-    sd_satisfaction = sd(life_satisfaction, na.rm = TRUE)
+    mean_satisfaction = mean(secular_values, na.rm = TRUE),
+    median_satisfaction = median(secular_values, na.rm = TRUE),
+    sd_satisfaction = sd(secular_values, na.rm = TRUE)
   )
 
 ```
@@ -542,9 +552,9 @@ To get a better sense of how the data is varied and spread, let's visualize them
 #| echo: true
 #| output-location: slide
 
-wvs_cleaned |> ggplot(aes(x = country, y = life_satisfaction)) +
+wvs_cleaned |> ggplot(aes(x = country, y = secular_values)) +
   geom_boxplot() +
-  labs(title = "Life Satisfaction by Country") +
+  labs(title = "secular values by Country") +
   theme_minimal()
 
 ```
@@ -610,10 +620,10 @@ Facet grids are useful when we have more than two variables to visualize. Howeve
 #| echo: true
 #| output-location: slide
 
-wvs_cleaned |> ggplot(aes(x = financial_satisfaction, y = life_satisfaction)) +
+wvs_cleaned |> ggplot(aes(x = emancipative_values, y = secular_values)) +
   geom_point(alpha = 0.3) +
   geom_smooth(method = "lm") +
-  facet_grid(country ~ education)
+  facet_grid(country ~ sex)
 
 ```
 
@@ -643,7 +653,7 @@ Next session: inferential stats in R using WVS data
 
 ## At home exercise #1
 
-Create a barchart that visualizes the frequency of `education`
+Create a barchart that visualizes the distribution of `education`
 
 ```{r}
 #| echo: true
@@ -653,7 +663,7 @@ Create a barchart that visualizes the frequency of `education`
 
 wvs_cleaned |> ggplot(aes(x = education, fill = education)) +
   geom_bar() +
-  labs(title = "Frequency of Education Level",
+  labs(title = "Distribution of Education Level",
        x = "Education Level",
        y = "Count") +
   theme_minimal()

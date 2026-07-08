@@ -9,8 +9,9 @@ format: revealjs
 1.  The various packages for tables
 2.  Simple Linear Regression in R
 3.  Binary Logistic Regression in R
+4.  Show and tell - Using Quarto to generate slides or report in R!
 
-## Open your project - the (possibly) easier way
+## Open your project 
 
 1.  Go to the folder where you put your project for this workshop
 
@@ -18,7 +19,7 @@ format: revealjs
 
 ![](images/locate-rproj-file.jpg)
 
-3.  Double click on the file. Rstudio should launch with your project loaded! This should be easier to ensure that you are loading the correct project when opening Rstudio.
+3.  Double click on the file. Rstudio should launch with your project loaded! 
 
 ## Install and load extra packages we need today
 

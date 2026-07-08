@@ -1,15 +1,10 @@
 ---
-title: "The WVS Dataset"
+title: "The World Values Survey Dataset"
 format: html
 ---
 
 For this workshop, we will be using dataset stored in a CSV file called `wvs-4-countries.csv`.
 
-```{=html}
-<a href="https://raw.githubusercontent.com/smu-libraries/r-socsci/refs/heads/main/data/wvs-4-countries.csv" type="button" class="btn btn-success">Click here to open wvs-4-countries.csv, and then Ctrl + S / Cmd + S to save it locally into your data folder</a>
-```
-
-::: {.callout-note appearance="simple"}
 ### What is a CSV?
 
 A CSV (Comma-Separated Values) file is a type of file that stores data in a plain text format. Each line in the file represents a row of data, and within each row, individual pieces of data (like numbers or words) are separated by commas.
@@ -17,7 +12,19 @@ A CSV (Comma-Separated Values) file is a type of file that stores data in a plai
 This format is commonly used for storing and transferring data, especially in spreadsheets and databases. Because it is literally just plain text, it is an ideal format if you have large amount of data.
 
 You can open CSV files in Excel, Google Sheets, or even Notepad!
-:::
+
+
+### Download the Dataset
+
+#### Step 1
+Click [**this link**](https://raw.githubusercontent.com/smu-libraries/r-socsci/refs/heads/main/data/wvs-4-countries.csv) to access the `wvs-4-countries.csv` file. You should see a plain page with a bunch of text.
+
+#### Step 2
+Right click anywhere in this page, and choose `Save As...` or `Save Page as...`.
+
+#### Step 3
+Save this file inside the `data` folder that we create together in Session 1, and you're good to go!
+
 
 ### Data Dictionary for WVS dataset
 

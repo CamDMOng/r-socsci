@@ -11,11 +11,20 @@ format: revealjs
 
 ## Checklist when you start RStudio
 
--   Navigate to where you create your R project folder for this workshop.
--   Find a file with `.Rproject` extension and double-click on it. This will start RStudio and open your project. 
+1.  Go to the folder where you put your project for this workshop
+
+2.  Find a file with `.Rproj` extension - this is the R project file that holds all the information about your project.
+
+![](images/locate-rproj-file.jpg)
+
+3.  Double click on the file. Rstudio should launch with your project loaded!
+
+4.  Re-run the `library(tidyverse)` and `read_csv` portion in the previous session (the code is also on the next slide if you missed last week's session)
+
+Optional (Though best practice):
+
 -   Make sure that `Environment` panel is empty (click on broom icon to clean it up).
 -   Clear the `Console` and `Plots` too.
--   Re-run the `library(tidyverse)` and `read_csv` portion in the previous session (the code is also on the next slide if you missed last week's session)
 
 ## Refresher: Loading from CSV into a dataframe
 
@@ -143,11 +152,13 @@ We can break down the steps as such:
 
 2.  Check for duplicates
 
-3.  Select only the relevant columns: `respondent_id`, demographic columns (`age`, `country`, `sex`, `urban_rural`, `income_level`, `marital_status`, `education`), and the attitudinal columns (`life_satisfaction`, `freedom_of_choice`, `financial_satisfaction`, `trust_people`, `importance_of_god`, `emancipative_values`, `secular_values`)
+3.  Select only the relevant columns. 
+
+    * Though in our example, the columns in the sample dataset is 'relevant', i.e. will be used. To recap, the columns are `respondent_id`, demographic columns (`age`, `country`, `sex`, `urban_rural`, `income_level`, `marital_status`, `education`), and the attitudinal columns (`life_satisfaction`, `freedom_of_choice`, `financial_satisfaction`, `trust_people`, `importance_of_god`, `emancipative_values`, `secular_values`)
 
 4.  Filter for respondents aged 18 or older. Optionally, we can then arrange the dataset by age (oldest to youngest)
 
-5.  Create a new column `avg_satisfaction` that averages `life_satisfaction` and `financial_satisfaction` as a combined wellbeing indicator
+5.  Create a new column `avg_satisfaction` that averages `life_satisfaction` and `financial_satisfaction` as a combined well-being indicator
 
 6.  Create age groups for each generation: "18-28", "29-44", "45-60", "61+"
 :::
@@ -189,7 +200,7 @@ dim(wvs_data)
 ::: panel-tabset
 ### Without pipe operator
 
-Notice that we have to create a "temp" dataframes called `wvs_data_clean` in this method.
+Notice that we have to create a "temp" dataframe called `wvs_data_clean` in this method.
 
 ``` r
 wvs_data <- drop_na(wvs_data)

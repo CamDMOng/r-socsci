@@ -66,14 +66,21 @@ The variables that researchers will manipulate.
 :::
 :::
 
-## Open your project - the (possibly) easier way
+## Checklist when you start RStudio
 
 1.  Go to the folder where you put your project for this workshop
 
 2.  Find a file with `.Rproj` extension - this is the R project file that holds all the information about your project.
 
+![](images/locate-rproj-file.jpg)
 
-3.  Double click on the file. Rstudio should launch with your project loaded! This should be easier to ensure that you are loading the correct project when opening Rstudio.
+3.  Double click on the file. Rstudio should launch with your project loaded!
+
+
+Optional (Though best practice):
+
+-   Make sure that `Environment` panel is empty (click on broom icon to clean it up).
+-   Clear the `Console` and `Plots` too.
 
 
 ## Load our data for today!

@@ -16,7 +16,9 @@ This site serves as a repository for the slides and codes developed for the 'Int
 * Bella Ratmelia, Research & Data Services, SMU Libraries
 
 
-Teaching Assistant: Camille Ong
+Teaching Assistant: 
+* Camille Ong
+* Lain Shae Goh
 
 
 ## Schedule
@@ -91,14 +93,14 @@ Packages can save us time and leverage expert-created tools without having to wr
 
 1.  Open RStudio
 
-2.  Copy the following code: `install.packages(c("tidyverse", "car", "huxtable", "apaTables"))`
+2.  Copy the following code: `install.packages(c("tidyverse", "DescTools", "moments", "corrplot", "apaTables", "gtsummary", "car", "huxtable"))`
 
 3.  Paste it in the **Console** tab (see image below)
 
 4.  Press Enter. Rstudio should proceed with installing the packages that we need.
 
-![](images/install-packages.jpg)
+![](images/install-packages.png)
 
 ### Step 4: Complete the pre-workshop survey
 
-[Please complete the pre-workshop survey here](https://smusg.asia.qualtrics.com/jfe/form/SV_6opr7O9gABSLwQS) to share your goals and current knowledge. Your input will help to tailor the workshop contents and pace.
+[**Please complete the pre-workshop survey here**](https://smusg.asia.qualtrics.com/jfe/form/SV_6opr7O9gABSLwQS) to share your goals and current knowledge. Your input will help to tailor the workshop contents and pace.

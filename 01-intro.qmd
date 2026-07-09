@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R and RStudio"
-author: "Bella Ratmelia & Wei XIA"
+title: "Session 1: Introduction to R and RStudio"
+author: "Bella Ratmelia & Wei Xia"
 format: revealjs
 ---
 
@@ -27,7 +27,7 @@ library(tidyverse)
 
 -   About Wei:
 
-    -   Principle Librarian, Instruction and Learning Services, SMU Libraries.
+    -   Principal Librarian, Instruction and Learning Services, SMU Libraries.
 
     -   Have been with SMU over 17 years. This is my 2nd run of R workshops!
 
@@ -158,21 +158,6 @@ country_name <- "Singapore"
 ```
 
 -   `"Singapore"` is a **value**. This can be either a character, numeric, or boolean data type. (more on this soon)
--   `country_name` is the **object** where we store this value. This is so that we can keep this value to be used later.
--   `<-` is the assignment operator to assign the value to the object.
-    -   You can also use `=`, but generally in R, `<-` is the convention.
-    -   Keyboard shortcut: `Alt` + `-` in Windows (`Option` + `-` in Mac)
-
-## R Objects and Values
-
-In this line of code:
-
-```{r}
-#| echo: true
-country_name <- "Singapore"
-```
-
--   `"Singapore"` is a **value**. This can be either a character, numeric, or boolean data type. (more on this soon)
 
 -   `country_name` is the **object** where we store this value. This is so that we can keep this value to be used later.
 
@@ -191,7 +176,7 @@ country_name <- "Singapore"
 
     -   Some reserved words (like some function names in R)
 
-## Refresher: Quantitative Data Types
+## Refresher: Data Types
 
 -   [**Non-Continuous Data**]{.underline}
 
@@ -498,7 +483,7 @@ satisfaction_scores[criteria]
 
 -   NA values indicate null values, or the absence of a value (0 is still a value!)
 
--   Summary functions like `mean` needs you to inlcude argument called `na.rm` on how you want it to be handled.
+-   Summary functions like `mean` needs you to include argument called `na.rm` on how you want it to be handled.
 
 Survey data often contains missing values (NA):
 
@@ -536,11 +521,11 @@ print(survey_data)
 
 For this workshop, we will try loading a dataset from a file into a dataframe!
 
-Go to the course website and go to the ['Dataset'](https://bellaratmelia.github.io/introductory-r-socsci/dataset.html) tab to download the data file and information about this WVS data
+Go to the course website and go to the ['Dataset'](https://smu-libraries.github.io/r-socsci/dataset.html) tab to download the data file and information about this WVS data
 
 Download this CSV and save it under your `data` folder in your R project!
 
-## Packages in R (for additional functionatilites)
+## Packages in R (for additional functionalities)
 
 -   Packages are a collections of R functions, datasets, etc. Packages extend the functionality of R.
 
@@ -622,7 +607,7 @@ wvs_data[3, ] # <5>
 
 -   Look (and often behave) like character vectors but are actually treated as integer vectors.
 
--   Can only contain a predefined set of values, known as `levels`. R always sorts levels in alphabetical order
+-   Can only contain a predefined set of values, known as `levels`. By default, R sorts levels in alphabetical order (but we can specify a custom order, as we'll see shortly)
 
 -   Can be ordered (ordinal) or unordered (nominal).
 

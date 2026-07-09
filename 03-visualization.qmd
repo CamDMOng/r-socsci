@@ -1,5 +1,5 @@
 ---
-title: "Data Visualization and Descriptive Stats"
+title: "Session 3: Data Visualization and Descriptive Stats"
 author: "Bella Ratmelia & Wei Xia"
 format: revealjs
 ---
@@ -537,9 +537,9 @@ Let's do a recap from last week and get the summary stats for `secular_values` f
 wvs_cleaned |> 
   group_by(country) |> 
   summarise(
-    mean_satisfaction = mean(secular_values, na.rm = TRUE),
-    median_satisfaction = median(secular_values, na.rm = TRUE),
-    sd_satisfaction = sd(secular_values, na.rm = TRUE)
+    mean_secular = mean(secular_values, na.rm = TRUE),
+    median_secular = median(secular_values, na.rm = TRUE),
+    sd_secular = sd(secular_values, na.rm = TRUE)
   )
 
 ```
@@ -554,7 +554,7 @@ To get a better sense of how the data is varied and spread, let's visualize them
 
 wvs_cleaned |> ggplot(aes(x = country, y = secular_values)) +
   geom_boxplot() +
-  labs(title = "secular values by Country") +
+  labs(title = "Secular Values by Country") +
   theme_minimal()
 
 ```
@@ -567,10 +567,10 @@ We could also layer our boxplots with violin plots to get a better sense of the 
 #| echo: true
 #| output-location: slide
 
-wvs_cleaned |> ggplot(aes(x = country, y = life_satisfaction)) +
+wvs_cleaned |> ggplot(aes(x = country, y = secular_values)) +
   geom_violin(fill = "lightblue", alpha = 0.5) +
   geom_boxplot(width = 0.1, fill = "white") +
-  labs(title = "Life Satisfaction Distribution by Country") +
+  labs(title = "Secular Values Distribution by Country") +
   theme_minimal()
 
 ```
@@ -692,7 +692,7 @@ wvs_cleaned |> ggplot(aes(x = freedom_of_choice, y = sex)) +
 
 When there are more than two continuous variables to explore, correlation map is sometimes used. We can achieve this with ggplot, but it's much easier to use the `corrplot()` function from the `corrplot` package.
 
-Let's visualize the correlation map for these three variables.
+Let's visualize the correlation map for these five variables. Notice the mix of positive (red) and negative (blue) correlations — for example, `importance_of_god` and `secular_values` are strongly negatively correlated.
 
 ```{R}
 #| echo: true
@@ -702,7 +702,7 @@ library(corrplot)
 
 # select all the columns for correlation calculation, save it to columns_for_corr
 columns_for_corr <- wvs_cleaned |>
-  select(financial_satisfaction, life_satisfaction, freedom_of_choice, age)
+  select(financial_satisfaction, life_satisfaction, freedom_of_choice, importance_of_god, secular_values)
 
 # pass the columns_for_corr to cor() function, and save the result to cor_matrix
 cor_matrix <- cor(columns_for_corr)
@@ -728,7 +728,7 @@ We can shorten the code in the previous slide using the maggritr pipe `|>` like 
 #| output-location: slide
 
 wvs_cleaned |>
-    select(financial_satisfaction, life_satisfaction, freedom_of_choice, age) |>
+    select(financial_satisfaction, life_satisfaction, freedom_of_choice, importance_of_god, secular_values) |>
     cor() |>
     corrplot(method = "shade", # show the correlation strength as color shades
          addCoef.col = "black", tl.col = "black")

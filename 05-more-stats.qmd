@@ -1,5 +1,5 @@
 ---
-title: 'Regression and Presenting Your Result'
+title: 'Session 5: Regression and Presenting Your Result'
 author: 'Bella Ratmelia'
 format: revealjs
 ---
@@ -134,20 +134,24 @@ $$
 
 Examples:
 
--   Does a person's **age** affect their **life satisfaction**?
--   Do a person's **age** and **country** affect their **life satisfaction**?
+-   Does a person's **secular values** affect their **life satisfaction**?
+-   Do a person's **secular values** and **financial satisfaction** affect their **life satisfaction**?
 
 ## Linear Regression: One continuous predictor
 
-**Research Question:** Does a person's **age** influence their **life satisfaction**?
+**Research Question:** Does a person's level of **secular values** influence their **life satisfaction**?
 
 - The outcome/DV ($Y$): `life_satisfaction`
-- The predictor/IV ($X$): `age`
+- The predictor/IV ($X$): `secular_values`
+
+::: {.callout-note appearance="simple"}
+`secular_values` is Welzel's secular-values index, ranging from **0** (very traditional/religious) to **1** (very secular). Keep this 0–1 scale in mind when interpreting the coefficient!
+:::
 
 ```{r}
 #| echo: true
 #| output-location: fragment
-life_model1 <- lm(life_satisfaction ~ age, data = wvs_cleaned)
+life_model1 <- lm(life_satisfaction ~ secular_values, data = wvs_cleaned)
 summary(life_model1) #summarize the result
 ```
 
@@ -172,9 +176,11 @@ summary(life_model1) #summarize the result
 
 Here is one possible way to narrate your result:
 
-> A linear regression analysis was conducted to assess the influence of age on life satisfaction in Hong Kong SAR, Indonesia, Malaysia, and Turkey. Age is a statistically significant but weak predictor (B = [value], SE = [value], p < 0.001), indicating that for each additional year of age, life satisfaction changes by [B] units.
+> A linear regression analysis was conducted to assess the influence of secular values on life satisfaction in Hong Kong SAR, Indonesia, Malaysia, and Turkey. Secular values were a statistically significant, negative predictor of life satisfaction (B = -2.44, SE = 0.15, p < 0.001).
 
-> The model was statistically significant (F(1, [df]) = [F-value], p < 0.001) and explained approximately [R²]% of the variance in life satisfaction.
+> Because `secular_values` ranges from 0 to 1, the raw coefficient describes the change across the *entire* scale. It is easier to interpret in smaller steps: for each **0.1 increase** in secular values, life satisfaction decreases by about **0.24 units** (−2.44 × 0.1) — that is, more secular respondents reported slightly lower life satisfaction.
+
+> The model was statistically significant (F(1, 5100) = 256.13, p < 0.001) but explained only about 4.8% of the variance in life satisfaction (R² = 0.048).
 
 ## Present your regression result - huxtable
 
@@ -187,24 +193,24 @@ huxreg("life satisfaction" = life_model1)
 
 ## Linear Regression: Multiple continuous predictors
 
-**Research Question:** Do a person's age and financial satisfaction their life satisfaction?
+**Research Question:** Do a person's **financial satisfaction** and **secular values** affect their **life satisfaction**?
 
 - The outcome/DV ($Y$): `life_satisfaction`
-- The predictors/IV ($X$): `financial_satisfaction` and `age`
+- The predictors/IV ($X$): `financial_satisfaction` and `secular_values`
 
 ```{r}
 #| echo: true
 #| output-location: slide
 
-life_model2 <- lm(life_satisfaction ~ financial_satisfaction + age, 
+life_model2 <- lm(life_satisfaction ~ financial_satisfaction + secular_values,
                   data = wvs_cleaned)
 summary(life_model2)
 ```
 ## Possible way to explain the result
 
-> A multiple regression analysis was conducted to examine how financial satisfaction and age predict life satisfaction. Financial satisfaction was a strong predictor (B = [value], SE = [value], p < 0.001), indicating that for each one-unit increase in financial satisfaction, life satisfaction increased by [B] units. Age was also a significant but weaker predictor (B = [value], SE = [value], p < 0.001), with each additional year of age associated with a [B]-unit change in life satisfaction.
+> A multiple regression analysis was conducted to examine how financial satisfaction and secular values predict life satisfaction. Financial satisfaction was a strong positive predictor (B = 0.52, SE = 0.01, p < 0.001): for each one-unit increase in financial satisfaction (on the 1–10 scale), life satisfaction increased by about 0.52 units. Secular values were a significant negative predictor (B = -1.81, SE = 0.13, p < 0.001); since this variable ranges 0–1, a 0.1 increase in secular values corresponds to about a 0.18-unit decrease in life satisfaction.
 
-> The model was statistically significant (F(2, [df]) = [F-value], p < 0.001) and explained [R²]% of the variance in life satisfaction.
+> The model was statistically significant (F(2, 5099) = 1405.49, p < 0.001) and explained about 35.5% of the variance in life satisfaction (R² = 0.355).
 
 ## Present your regression result - tbl_regression() from gtsummary
 
@@ -297,6 +303,12 @@ Before proceeding with analysis, ensure that all the categorical variables invol
 ```{r}
 #| echo: true
 
+# put the age groups in ascending order so the youngest group (18-28)
+# becomes the reference category
+wvs_cleaned <- wvs_cleaned |>
+    mutate(age_group = factor(age_group,
+                              levels = c("18-28", "29-44", "45-60", "61+")))
+
 str(wvs_cleaned$life_satisfaction)
 str(wvs_cleaned$age_group)
 ```
@@ -319,9 +331,9 @@ summary(life_model3)
 
 Here is one possible way to narrate your result:
 
-> A linear regression analysis was conducted to examine how age groups predict life satisfaction. With the youngest age group (15-28) as the reference group (intercept = 6.66, SE = 0.06), all other age groups showed significantly higher life satisfaction. The 29-44 age group scored 0.37 units higher (SE = 0.07, p < 0.001), the 45-60 age group scored 0.35 units higher (SE = 0.07, p < 0.001), and the 61+ age group showed the largest difference, scoring 0.87 units higher (SE = 0.07, p < 0.001) than the reference group.
+> A linear regression analysis was conducted to examine how age groups predict life satisfaction. With the youngest age group (18-28) as the reference group (intercept = 7.02, SE = 0.06), the pattern was mixed. The 29-44 age group scored 0.14 units lower, though this difference was not statistically significant (SE = 0.07, p = 0.065). The 45-60 age group scored 0.18 units lower (SE = 0.08, p = 0.023), while the oldest 61+ age group scored 0.22 units higher (SE = 0.11, p = 0.044) than the reference group.
 
-> The model was statistically significant (F(3, 6399) = 55.44, p < 0.001) but only explained 2.5% of the variance in life satisfaction (R² = 0.025, Adjusted R² = 0.025).
+> The model was statistically significant (F(3, 5098) = 5.86, p < 0.001) but explained less than 1% of the variance in life satisfaction (R² = 0.003, Adjusted R² = 0.003).
 
 ## Presenting the regression table {.scrollable}
 

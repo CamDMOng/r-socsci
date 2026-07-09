@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling with Tidyverse"
+title: "Session 2: Data Wrangling with Tidyverse"
 author: "Bella Ratmelia & Wei Xia"
 format: revealjs
 ---
@@ -213,10 +213,10 @@ write_csv(wvs_data_clean, "data-output/wvs-clean.csv")
 No "temporary" dataframe needed here! :D
 
 ``` {.r code-overflow="overflow"}
-wvs_data |> 
-    drop_na() |> 
-    distinct(ID, .keep_all = TRUE) |> 
-    write_csv("data-output/wvs-30plus.csv")
+wvs_data |>
+    drop_na() |>
+    distinct(respondent_id, .keep_all = TRUE) |>
+    write_csv("data-output/wvs-clean.csv")
 ```
 :::
 
@@ -338,7 +338,7 @@ Check the data output folder to make sure the CSV is created!
 Once we are done with the wrangling part, we can proceed with simple descriptive analysis!
 
 ::: incremental
--   Prep: Before we proceed further, convert the appropriate categorical variables (country, religiousity, sex, marital_status, employment) to **Factor**
+-   Prep: Before we proceed further, convert the appropriate categorical variables (country, sex, marital_status, urban_rural, income_level, education, trust_people) to **Factor**
 
 -   Analysis 1: Generate summary statistics of life_satisfaction grouped by country
 
@@ -418,14 +418,14 @@ We can achieve this with `group_by()` and `summarise()`. It will contain one col
 #| output-location: slide
 
 wvs_data |>
-    group_by(country, age_group) |>
+    group_by(country) |>
     summarise(
         n = n(),
         mean_satisfaction = mean(life_satisfaction),
         median_satisfaction = median(life_satisfaction),
         sd_satisfaction = sd(life_satisfaction)
     ) |>
-    arrange(country, desc(mean_satisfaction))
+    arrange(desc(mean_satisfaction))
 
 ```
 
@@ -564,7 +564,7 @@ wvs_data |> select(country) |> print(n = 3)
 
 -   Data wrangling with dplyr and tidyr (part of the tidyverse package): Use tidyverse functions to tidy and reshape datasets and perform tasks like selecting, filtering, and summarizing data.
 
--   Remove all rows with missing values (NA) and check for duplicates: Delete rows containing missing data using `na.omit()` and identify or remove duplicate rows with functions like `distinct()`.
+-   Remove all rows with missing values (NA) and check for duplicates: Delete rows containing missing data using `drop_na()` and identify or remove duplicate rows with functions like `distinct()`.
 
 -   Select only the relevant columns: Use `select()` to keep only the columns needed for the analysis, focusing on important variables.
 

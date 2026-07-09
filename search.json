@@ -46,14 +46,14 @@
     "href": "index.html#instructors",
     "title": "Introductory R for Social Sciences",
     "section": "Instructors",
-    "text": "Instructors\nInstructors:\n\nWei Xia, Instruction and Learning Services, SMU Libraries\nBella Ratmelia, Research & Data Services, SMU Libraries\n\nTeaching Assistant: * Camille Ong * Lain Shae Goh"
+    "text": "Instructors\nInstructors:\n\nWei Xia, Instruction and Learning Services, SMU Libraries\nBella Ratmelia, Research & Data Services, SMU Libraries\n\nTeaching Assistants:\n\nCamille Ong, Instruction and Learning Services, SMU Libraries\nLain Shae Goh, School of Social Sciences"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "Introductory R for Social Sciences",
     "section": "Schedule",
-    "text": "Schedule\nVenue : TBA\nTime : 3:30 - 5:30 PM (All sessions)\nClick on the link under “Topic” to access the slides. Slides will be progressively made available throughout the sessions.\n\n\n\n\nSession\nDate\nTopic\nDescription\n\n\n\n\n~\nBefore the workshop\nPreparation\nComplete the Pre-workshop activities\n\n\n1\n21 Aug 2026\nIntroduction to R and RStudio\nLearn about setting up RStudio, basic data types and structures in R, and importing data files.\n\n\n2\n28 Aug 2026\nData wrangling with tidyverse\nLearn about manipulating data with tidyverse, including filtering, selecting, mutating, and grouping data.\n\n\n3\n4 Sep 2026\nData visualization and Descriptive Statistics\nLearn about creating visualizations with ggplot2 and calculating descriptive statistics like mean, median, etc.\n\n\n4\n11 Sep 2026\nBasic Inferential Tests\nLearn about conducting t-tests, chi-square tests, ANOVA, and interpreting statistical results in R.\n\n\n5\n18 Sep 2026\nRegression and Presenting Your Result\nLearn about regression and various useful packages to generate your result table.\n\n\n~\nAfter the workshop\n\nPost-workshop exercises"
+    "text": "Schedule\nVenue : YPHSL Seminar Room 3.2\nTime : Fridays, 3:30 - 5:30 PM (All sessions)\nClick on the link under “Topic” to access the slides. Slides will be progressively made available throughout the sessions.\n\n\n\n\nSession\nDate\nTopic\nDescription\n\n\n\n\n~\nBefore the workshop\nPreparation\nComplete the Pre-workshop activities\n\n\n1\n21 Aug 2026\nIntroduction to R and RStudio\nLearn about setting up RStudio, basic data types and structures in R, and importing data files.\n\n\n2\n28 Aug 2026\nData wrangling with tidyverse\nLearn about manipulating data with tidyverse, including filtering, selecting, mutating, and grouping data.\n\n\n3\n4 Sep 2026\nData visualization and Descriptive Statistics\nLearn about creating visualizations with ggplot2 and calculating descriptive statistics like mean, median, etc.\n\n\n4\n11 Sep 2026\nBasic Inferential Tests\nLearn about conducting t-tests, chi-square tests, ANOVA, and interpreting statistical results in R.\n\n\n5\n18 Sep 2026\nRegression and Presenting Your Result\nLearn about regression and various useful packages to generate your result table.\n\n\n~\nAfter the workshop\n\nPost-workshop exercises"
   },
   {
     "objectID": "index.html#pre-workshop-activities",

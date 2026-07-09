@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The WVS Dataset – Introductory R for Social Sciences</title>
+<title>The World Values Survey Dataset – Introductory R for Social Sciences</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,9 @@ gtag('config', 'G-G5L1RGYC4H', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-dictionary-for-wvs-dataset" id="toc-data-dictionary-for-wvs-dataset" class="nav-link active" data-scroll-target="#data-dictionary-for-wvs-dataset">Data Dictionary for WVS dataset</a></li>
+  <li><a href="#what-is-a-csv" id="toc-what-is-a-csv" class="nav-link active" data-scroll-target="#what-is-a-csv">What is a CSV?</a></li>
+  <li><a href="#download-the-dataset" id="toc-download-the-dataset" class="nav-link" data-scroll-target="#download-the-dataset">Download the Dataset</a></li>
+  <li><a href="#data-dictionary-for-wvs-dataset" id="toc-data-dictionary-for-wvs-dataset" class="nav-link" data-scroll-target="#data-dictionary-for-wvs-dataset">Data Dictionary for WVS dataset</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -166,7 +168,7 @@ gtag('config', 'G-G5L1RGYC4H', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The WVS Dataset</h1>
+<h1 class="title">The World Values Survey Dataset</h1>
 </div>
 
 
@@ -184,22 +186,27 @@ gtag('config', 'G-G5L1RGYC4H', { 'anonymize_ip': true});
 
 
 <p>For this workshop, we will be using dataset stored in a CSV file called <code>wvs-4-countries.csv</code>.</p>
-<a href="https://raw.githubusercontent.com/smu-libraries/r-socsci/refs/heads/main/data/wvs-4-countries.csv" type="button" class="btn btn-success">Click here to open wvs-4-countries.csv, and then Ctrl + S / Cmd + S to save it locally into your data folder</a>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What is a CSV?
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="what-is-a-csv" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-csv">What is a CSV?</h3>
 <p>A CSV (Comma-Separated Values) file is a type of file that stores data in a plain text format. Each line in the file represents a row of data, and within each row, individual pieces of data (like numbers or words) are separated by commas.</p>
 <p>This format is commonly used for storing and transferring data, especially in spreadsheets and databases. Because it is literally just plain text, it is an ideal format if you have large amount of data.</p>
 <p>You can open CSV files in Excel, Google Sheets, or even Notepad!</p>
-</div>
-</div>
+</section>
+<section id="download-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="download-the-dataset">Download the Dataset</h3>
+<section id="step-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-1">Step 1</h4>
+<p>Click <a href="https://raw.githubusercontent.com/smu-libraries/r-socsci/refs/heads/main/data/wvs-4-countries.csv"><strong>this link</strong></a> to access the <code>wvs-4-countries.csv</code> file. You should see a plain page with a bunch of text.</p>
+</section>
+<section id="step-2" class="level4">
+<h4 class="anchored" data-anchor-id="step-2">Step 2</h4>
+<p>Right click anywhere in this page, and choose <code>Save As...</code> or <code>Save Page as...</code>.</p>
+</section>
+<section id="step-3" class="level4">
+<h4 class="anchored" data-anchor-id="step-3">Step 3</h4>
+<p>Save this file inside the <code>data</code> folder that we create together in Session 1, and you’re good to go!</p>
+</section>
+</section>
 <section id="data-dictionary-for-wvs-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="data-dictionary-for-wvs-dataset">Data Dictionary for WVS dataset</h3>
 <p>The World Values Survey (&lt;www.worldvaluessurvey.org&gt;) is a global network of social scientists studying changing values and their impact on social and political life, led by an international team of scholars, with the WVS association and secretariat headquartered in Stockholm, Sweden.</p>

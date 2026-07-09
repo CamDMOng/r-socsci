@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Bella Ratmelia &amp; Wei Xia">
-  <title>Introductory R for Social Sciences – Data Wrangling with Tidyverse</title>
+  <title>Introductory R for Social Sciences – Session 2: Data Wrangling with Tidyverse</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -211,7 +211,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data Wrangling with Tidyverse</h1>
+  <h1 class="title">Session 2: Data Wrangling with Tidyverse</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -231,12 +231,19 @@ Bella Ratmelia &amp; Wei Xia
 </section>
 <section id="checklist-when-you-start-rstudio" class="slide level2">
 <h2>Checklist when you start RStudio</h2>
+<ol type="1">
+<li><p>Go to the folder where you put your project for this workshop</p></li>
+<li><p>Find a file with <code>.Rproj</code> extension - this is the R project file that holds all the information about your project.</p></li>
+</ol>
+
+<img data-src="images/locate-rproj-file.jpg" class="r-stretch"><ol start="3" type="1">
+<li><p>Double click on the file. Rstudio should launch with your project loaded!</p></li>
+<li><p>Re-run the <code>library(tidyverse)</code> and <code>read_csv</code> portion in the previous session (the code is also on the next slide if you missed last week’s session)</p></li>
+</ol>
+<p>Optional (Though best practice):</p>
 <ul>
-<li>Navigate to where you create your R project folder for this workshop.</li>
-<li>Find a file with <code>.Rproject</code> extension and double-click on it. This will start RStudio and open your project.</li>
 <li>Make sure that <code>Environment</code> panel is empty (click on broom icon to clean it up).</li>
 <li>Clear the <code>Console</code> and <code>Plots</code> too.</li>
-<li>Re-run the <code>library(tidyverse)</code> and <code>read_csv</code> portion in the previous session (the code is also on the next slide if you missed last week’s session)</li>
 </ul>
 </section>
 <section id="refresher-loading-from-csv-into-a-dataframe" class="slide level2">
@@ -340,9 +347,12 @@ Bella Ratmelia &amp; Wei Xia
 <ol type="1">
 <li class="fragment"><p>Remove all rows with missing values (NA)</p></li>
 <li class="fragment"><p>Check for duplicates</p></li>
-<li class="fragment"><p>Select only the relevant columns: <code>respondent_id</code>, demographic columns (<code>age</code>, <code>country</code>, <code>sex</code>, <code>urban_rural</code>, <code>income_level</code>, <code>marital_status</code>, <code>education</code>), and the attitudinal columns (<code>life_satisfaction</code>, <code>freedom_of_choice</code>, <code>financial_satisfaction</code>, <code>trust_people</code>, <code>importance_of_god</code>, <code>emancipative_values</code>, <code>secular_values</code>)</p></li>
+<li class="fragment"><p>Select only the relevant columns.</p>
+<ul>
+<li class="fragment">Though in our example, the columns in the sample dataset is ‘relevant’, i.e.&nbsp;will be used. To recap, the columns are <code>respondent_id</code>, demographic columns (<code>age</code>, <code>country</code>, <code>sex</code>, <code>urban_rural</code>, <code>income_level</code>, <code>marital_status</code>, <code>education</code>), and the attitudinal columns (<code>life_satisfaction</code>, <code>freedom_of_choice</code>, <code>financial_satisfaction</code>, <code>trust_people</code>, <code>importance_of_god</code>, <code>emancipative_values</code>, <code>secular_values</code>)</li>
+</ul></li>
 <li class="fragment"><p>Filter for respondents aged 18 or older. Optionally, we can then arrange the dataset by age (oldest to youngest)</p></li>
-<li class="fragment"><p>Create a new column <code>avg_satisfaction</code> that averages <code>life_satisfaction</code> and <code>financial_satisfaction</code> as a combined wellbeing indicator</p></li>
+<li class="fragment"><p>Create a new column <code>avg_satisfaction</code> that averages <code>life_satisfaction</code> and <code>financial_satisfaction</code> as a combined well-being indicator</p></li>
 <li class="fragment"><p>Create age groups for each generation: “18-28”, “29-44”, “45-60”, “61+”</p></li>
 </ol>
 <p>Once we did all of the wrangling above, we can save this “wrangled” version into another CSV as a “checkpoint”.</p>
@@ -382,17 +392,17 @@ Bella Ratmelia &amp; Wei Xia
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Without pipe operator</a></li><li><a href="#tabset-1-2">With pipe operator</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<p>Notice that we have to create a “temp” dataframes called <code>wvs_data_clean</code> in this method.</p>
+<p>Notice that we have to create a “temp” dataframe called <code>wvs_data_clean</code> in this method.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>wvs_data <span class="ot">&lt;-</span> <span class="fu">drop_na</span>(wvs_data)</span>
 <span id="cb6-2"><a></a>wvs_data_clean <span class="ot">&lt;-</span> <span class="fu">arrange</span>(wvs_data, <span class="fu">desc</span>(age))</span>
 <span id="cb6-3"><a></a><span class="fu">write_csv</span>(wvs_data_clean, <span class="st">"data-output/wvs-clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2">
 <p>No “temporary” dataframe needed here! :D</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-code-overflow="overflow"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>wvs_data <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a></a>    <span class="fu">distinct</span>(ID, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-4"><a></a>    <span class="fu">write_csv</span>(<span class="st">"data-output/wvs-30plus.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-code-overflow="overflow"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>wvs_data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>    <span class="fu">distinct</span>(respondent_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>    <span class="fu">write_csv</span>(<span class="st">"data-output/wvs-clean.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -527,7 +537,7 @@ $ secular_values         &lt;dbl&gt; 0.5250000, 0.6941667, 0.4838889, 0.6794444,
 <h2>Simple descriptive analysis</h2>
 <p>Once we are done with the wrangling part, we can proceed with simple descriptive analysis!</p>
 <ul>
-<li class="fragment"><p>Prep: Before we proceed further, convert the appropriate categorical variables (country, religiousity, sex, marital_status, employment) to <strong>Factor</strong></p></li>
+<li class="fragment"><p>Prep: Before we proceed further, convert the appropriate categorical variables (country, sex, marital_status, urban_rural, income_level, education, trust_people) to <strong>Factor</strong></p></li>
 <li class="fragment"><p>Analysis 1: Generate summary statistics of life_satisfaction grouped by country</p></li>
 <li class="fragment"><p>Analysis 2: Create a new column called <code>satisfaction_group</code> that indicate whether each respondent has higher or lower than average <code>life_satisfaction</code></p></li>
 <li class="fragment"><p>Analysis 3: Reshape the data to show average satisfaction scores by country and age group</p></li>
@@ -623,40 +633,27 @@ $ secular_values         &lt;dbl&gt; 0.5250000, 0.6941667, 0.4838889, 0.6794444,
 <p>We can achieve this with <code>group_by()</code> and <code>summarise()</code>. It will contain one column for each grouping variable and one column for each of the summary statistics that you have specified.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>wvs_data <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a></a>    <span class="fu">group_by</span>(country, age_group) <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a></a>    <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a></a>    <span class="fu">summarise</span>(</span>
 <span id="cb23-4"><a></a>        <span class="at">n =</span> <span class="fu">n</span>(),</span>
 <span id="cb23-5"><a></a>        <span class="at">mean_satisfaction =</span> <span class="fu">mean</span>(life_satisfaction),</span>
 <span id="cb23-6"><a></a>        <span class="at">median_satisfaction =</span> <span class="fu">median</span>(life_satisfaction),</span>
 <span id="cb23-7"><a></a>        <span class="at">sd_satisfaction =</span> <span class="fu">sd</span>(life_satisfaction)</span>
 <span id="cb23-8"><a></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb23-9"><a></a>    <span class="fu">arrange</span>(country, <span class="fu">desc</span>(mean_satisfaction))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-9"><a></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_satisfaction))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 <p><em>What if we want to save this into a CSV? What if we also want to group by country AND age_group?</em></p>
 </section>
 <section id="analysis-1---summary-stats-of-life_satisfaction-for-each-country-output" class="slide level2 output-location-slide"><h2>Analysis 1 - summary stats of life_satisfaction for each country</h2><div class="cell output-location-slide">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 6
-# Groups:   country [4]
-   country age_group     n mean_satisfaction median_satisfaction sd_satisfaction
-   &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt;             &lt;dbl&gt;               &lt;dbl&gt;           &lt;dbl&gt;
- 1 Hong K… 61+         285              7.26                 8              1.89
- 2 Hong K… 45-60       412              6.57                 7              1.80
- 3 Hong K… 29-44       384              6.33                 7              1.72
- 4 Hong K… 18-28       191              6.31                 6              1.59
- 5 Indone… 18-28       308              7.90                 8              2.09
- 6 Indone… 45-60       360              7.57                 8              2.58
- 7 Indone… 61+         104              7.55                 8              2.45
- 8 Indone… 29-44       529              7.53                 8              2.39
- 9 Malays… 61+          74              7.14                 7.5            1.69
-10 Malays… 18-28       379              7.05                 7              1.78
-11 Malays… 45-60       349              7.01                 7              1.77
-12 Malays… 29-44       511              6.91                 7              1.72
-13 Turkey  18-28       329              6.57                 7              1.84
-14 Turkey  29-44       427              6.54                 7              1.90
-15 Turkey  45-60       430              6.36                 6              1.80
-16 Turkey  61+          30              6.2                  6              1.92</code></pre>
+<pre><code># A tibble: 4 × 5
+  country           n mean_satisfaction median_satisfaction sd_satisfaction
+  &lt;chr&gt;         &lt;int&gt;             &lt;dbl&gt;               &lt;dbl&gt;           &lt;dbl&gt;
+1 Indonesia      1301              7.63                   8            2.39
+2 Malaysia       1313              6.99                   7            1.75
+3 Hong Kong SAR  1272              6.61                   7            1.80
+4 Turkey         1216              6.48                   7            1.85</code></pre>
 </div>
 </div></section><section id="analysis-2---how-many-has-below-and-average-life_satisfaction" class="slide level2">
 <h2>Analysis 2 - How many has below and average life_satisfaction?</h2>
@@ -930,7 +927,7 @@ $ secular_values         &lt;dbl&gt; 0.5250000, 0.6941667, 0.4838889, 0.6794444,
 <ul>
 <li class="fragment"><p>Import and read data into RStudio: Load external data files (like CSV or Excel) into R using functions such as <code>read_csv()</code> to make the data available for analysis.</p></li>
 <li class="fragment"><p>Data wrangling with dplyr and tidyr (part of the tidyverse package): Use tidyverse functions to tidy and reshape datasets and perform tasks like selecting, filtering, and summarizing data.</p></li>
-<li class="fragment"><p>Remove all rows with missing values (NA) and check for duplicates: Delete rows containing missing data using <code>na.omit()</code> and identify or remove duplicate rows with functions like <code>distinct()</code>.</p></li>
+<li class="fragment"><p>Remove all rows with missing values (NA) and check for duplicates: Delete rows containing missing data using <code>drop_na()</code> and identify or remove duplicate rows with functions like <code>distinct()</code>.</p></li>
 <li class="fragment"><p>Select only the relevant columns: Use <code>select()</code> to keep only the columns needed for the analysis, focusing on important variables.</p></li>
 <li class="fragment"><p>Filter data based on criterion and arrange data: Apply <code>filter()</code> to keep rows meeting specific conditions and use <code>arrange()</code> to sort data by one or more columns.</p></li>
 <li class="fragment"><p>Convert categorical variables to Factor data: Use <code>mutate()</code> and <code>as_factor</code>.</p></li>

@@ -132,7 +132,7 @@ subset_data <- data[data$age > 18 & data$income > 50000, c("name", "age", "salar
 
 # Tidyverse  
 subset_data <- data |> 
-  filter(age > 18, income > 50000)  |> 
+  filter(age > 18 & income > 50000)  |> 
   select(name, age, salary)
 
 ```
